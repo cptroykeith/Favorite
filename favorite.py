@@ -6,13 +6,13 @@ import webbrowser
 from matplotlib.pyplot import title
 
 conn = sqlite3.connect(':memory:')
-#conn = sqlite3.connect('favs.db')
+conn = sqlite3.connect('favs.db')
 
 c = conn.cursor()
 
 c.execute('''CREATE TABLE IF NOT EXISTS favorites(title TEXT, url TEXT)''')
 def add_fav(title,url):
-    c.execute('''INSERT INTO favourites (title, url) VALUES ('?', '?')''')
+    c.execute('''INSERT INTO favourites (title, url) VALUES ('?', '?')''',(title, url))
 
 conn.commit()
 def remove_fav(title):
